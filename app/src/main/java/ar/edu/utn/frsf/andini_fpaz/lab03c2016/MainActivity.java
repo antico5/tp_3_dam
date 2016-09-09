@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,14 +39,45 @@ public class MainActivity extends AppCompatActivity {
             String textoFecha = "";
 
             categoria.setText(trabajo.getCategoria().getDescripcion());
+            descripcion.setText(trabajo.getDescripcion());
+            horasPrecio.setText(textoHorasPrecio);
+            fecha.setText(textoFecha);
+
+            int icono = R.drawable.ar;
+            //1 US$ 2Euro 3 AR$- 4 Libra 5 R$
+            switch (trabajo.getMonedaPago()){
+                case 1:
+                    icono = R.drawable.us;
+                    break;
+                case 2:
+                    icono = R.drawable.eu;
+                    break;
+                case 3:
+                    icono = R.drawable.ar;
+                    break;
+                case 4:
+                    icono = R.drawable.uk;
+                    break;
+                case 5:
+                    icono = R.drawable.br;
+                    break;
+            }
+
+            moneda.setImageResource(icono);
 
             return(row);
         }
     }
 
+    ListView lv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        lv = (ListView) findViewById(R.id.trabajos);
+        Trabajo[] trabajos = Trabajo.TRABAJOS_MOCK;
+        MiAdapter adapter = new MiAdapter(getApplicationContext(), Arrays.asList(trabajos));
+        lv.setAdapter(adapter);
     }
 }
