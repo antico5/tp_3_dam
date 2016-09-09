@@ -54,6 +54,7 @@
             android:text="En Ingles"
             android:id="@+id/ingles"
             android:checked="false"
-            android:enabled="false" />
+            android:enabled="false"
+            android:textColor="@color/accent_material_dark" />
     </LinearLayout>
 </LinearLayout>
