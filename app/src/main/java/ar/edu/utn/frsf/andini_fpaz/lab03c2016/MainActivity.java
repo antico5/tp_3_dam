@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,9 +35,10 @@ public class MainActivity extends AppCompatActivity {
             TextView fecha = (TextView)row.findViewById(R.id.fecha);
 
             ImageView moneda = (ImageView)row.findViewById(R.id.moneda);
-
-            String textoHorasPrecio = "";
-            String textoFecha = "";
+            String precio = df.format(trabajo.getPrecioMaximoHora());
+            SimpleDateFormat datef = new SimpleDateFormat("dd/MM/yy");
+            String textoHorasPrecio = String.format("Horas: %d Max $/hora: %s", trabajo.getHorasPresupuestadas(), precio);
+            String textoFecha = String.format("Fecha Fin: %s",datef.format(trabajo.getFechaEntrega()));
 
             categoria.setText(trabajo.getCategoria().getDescripcion());
             descripcion.setText(trabajo.getDescripcion());
