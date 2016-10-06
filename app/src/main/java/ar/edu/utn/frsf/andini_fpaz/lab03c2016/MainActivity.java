@@ -2,6 +2,8 @@ package ar.edu.utn.frsf.andini_fpaz.lab03c2016;
 
 import android.content.Context;
 import java.text.DecimalFormat;
+
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -96,7 +98,15 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        Intent i = new Intent(this, AltaTrabajo.class);
+        startActivityForResult(i,0);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Trabajo trabajo = (Trabajo) data.getSerializableExtra("trabajo");
+        toast(trabajo.getDescripcion());
     }
 
     private void toast(String mensaje){
