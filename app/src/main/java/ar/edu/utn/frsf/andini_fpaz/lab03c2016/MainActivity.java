@@ -20,6 +20,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
     public class MiAdapter extends ArrayAdapter<Trabajo> {
@@ -81,20 +82,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     ListView lv;
+    MiAdapter adapter;
+    Vector<Trabajo> vector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lv = (ListView) findViewById(R.id.trabajos);
-        final Trabajo[] trabajos = Trabajo.TRABAJOS_MOCK;
-        MiAdapter adapter = new MiAdapter(getApplicationContext(), Arrays.asList(trabajos));
+        vector = new Vector<Trabajo>();
+        vector.addAll(Arrays.asList(Trabajo.TRABAJOS_MOCK));
+
+        adapter = new MiAdapter(getApplicationContext(), vector);
+
         lv.setAdapter(adapter);
         lv.setLongClickable(true);
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                toast(trabajos[position].getDescripcion());
+                toast(vector.get(position).getDescripcion());
                 return true;
             }
         });
@@ -106,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Trabajo trabajo = (Trabajo) data.getSerializableExtra("trabajo");
+        adapter.add(trabajo);
         toast(trabajo.getDescripcion());
     }
 

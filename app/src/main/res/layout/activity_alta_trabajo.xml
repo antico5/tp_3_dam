@@ -16,16 +16,96 @@
         android:inputType="textPersonName"
         android:text="Name"
         android:ems="10"
-        android:layout_alignParentTop="true"
         android:id="@+id/descripcion"
+        android:layout_below="@+id/textView3"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="Crear"
+    <TextView
+        android:text="Descripcion del trabajo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="119dp"
+        android:id="@+id/categoriasSpinner"
+        android:layout_below="@+id/textView5"
+        android:layout_alignEnd="@+id/textView4" />
+
+    <TextView
+        android:text="Categoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
         android:layout_below="@+id/descripcion"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Moneda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/categoriasSpinner"
         android:layout_alignParentStart="true"
-        android:id="@+id/alta" />
+        android:id="@+id/textView6" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView6"
+        android:layout_marginTop="14dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/radioGroup">
+
+        <RadioButton
+            android:text="Dolar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton6"
+            android:layout_weight="1"
+            android:checked="true" />
+
+        <RadioButton
+            android:text="Euro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton5"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:text="Peso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton4"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:text="Libra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton3"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:text="RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton2"
+            android:layout_weight="1" />
+    </RadioGroup>
+
+    <Button
+        android:text="Guardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/alta"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+
 </RelativeLayout>
