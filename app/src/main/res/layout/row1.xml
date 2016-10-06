@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Proyecto X"
-        android:id="@+id/descripcion" />
+        android:id="@+id/descripcion"
+        android:textColor="@android:color/darker_gray" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -26,6 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Horas 9 etcd"
             android:id="@+id/horasPrecio" />
@@ -44,6 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Finaliza 9/12/16"
             android:id="@+id/fecha" />

@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             TextView descripcion = (TextView)row.findViewById(R.id.descripcion);
             TextView horasPrecio = (TextView)row.findViewById(R.id.horasPrecio);
             TextView fecha = (TextView)row.findViewById(R.id.fecha);
+            CheckBox enIngles = (CheckBox)row.findViewById(R.id.ingles);
 
             ImageView moneda = (ImageView)row.findViewById(R.id.moneda);
             String precio = df.format(trabajo.getPrecioMaximoHora());
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             descripcion.setText(trabajo.getDescripcion());
             horasPrecio.setText(textoHorasPrecio);
             fecha.setText(textoFecha);
+            enIngles.setChecked(trabajo.getRequiereIngles());
 
             int icono = R.drawable.ar;
             //1 US$ 2Euro 3 AR$- 4 Libra 5 R$
@@ -66,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
             moneda.setImageResource(icono);
-
+            row.setLongClickable(true);
             return(row);
         }
+
+
     }
 
     ListView lv;
@@ -78,8 +85,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lv = (ListView) findViewById(R.id.trabajos);
-        Trabajo[] trabajos = Trabajo.TRABAJOS_MOCK;
+        final Trabajo[] trabajos = Trabajo.TRABAJOS_MOCK;
         MiAdapter adapter = new MiAdapter(getApplicationContext(), Arrays.asList(trabajos));
         lv.setAdapter(adapter);
+        lv.setLongClickable(true);
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                toast(trabajos[position].getDescripcion());
+                return true;
+            }
+        });
+
     }
+
+    private void toast(String mensaje){
+        Toast toast = Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
 }
