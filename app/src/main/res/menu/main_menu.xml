@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ar.edu.utn.frsf.andini_fpaz.lab03c2016.MainActivity">
+    <item
+        android:id="@+id/idMenu1"
+        android:title="Agregar oferta"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu2"
+        android:orderInCategory="100"
+        android:title="Ver mis ofertas"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu3"
+        android:orderInCategory="100"
+        android:title="Configuracion"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu4"
+        android:orderInCategory="100"
+        android:title="Salir"
+        app:showAsAction="never" />
+</menu>

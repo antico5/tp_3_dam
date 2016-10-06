@@ -6,7 +6,11 @@ import java.text.DecimalFormat;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -96,17 +100,33 @@ public class MainActivity extends AppCompatActivity {
         adapter = new MiAdapter(getApplicationContext(), vector);
 
         lv.setAdapter(adapter);
-        lv.setLongClickable(true);
+        /*lv.setLongClickable(true);
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 toast(vector.get(position).getDescripcion());
                 return true;
             }
-        });
-        Intent i = new Intent(this, AltaTrabajo.class);
-        startActivityForResult(i,0);
+        });*/
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
+        registerForContextMenu(lv);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.menu_contextual, menu);
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        menu.setHeaderTitle(adapter.getItem(info.position).getDescripcion());
     }
 
     @Override
@@ -121,4 +141,20 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
     }
 
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.contextMenu1){
+            toast("Usted se ha postulado para el trabajo.");
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.idMenu1) {
+            Intent i = new Intent(this, AltaTrabajo.class);
+            startActivityForResult(i,0);
+        }
+        return true;
+    }
 }
